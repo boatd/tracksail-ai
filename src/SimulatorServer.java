@@ -394,7 +394,7 @@ public class SimulatorServer extends Thread
                 else if (command.equalsIgnoreCase("waypointeasting"))
                 {
                     int wpnum=Integer.parseInt(params);
-                    Track t = player.getGame().getTrack();
+                    Track t = player.getGame().getTrack();               
                     int easting = (int)t.getPortPB(wpnum).getX();
                     return new Integer(easting).toString();
                 }
@@ -442,16 +442,14 @@ public class SimulatorServer extends Thread
                 }
                 else if (command.equalsIgnoreCase("northing"))
                 {
-
-                    float x = player.getPosition().getY();
-                    return new Float(x).toString();
+                    double pos[] = GPSUtils.xYToLatLon(player.getPosition().getX(),player.getPosition().getY());
+                    return new Double(pos[0]).toString();
                     
                 }
                 else if (command.equalsIgnoreCase("easting"))
                 {
-
-                    float y = player.getPosition().getX();
-                    return new Float(y).toString();
+                    double pos[] = GPSUtils.xYToLatLon(player.getPosition().getX(),player.getPosition().getY());
+                    return new Double(pos[1]).toString();
                 }
                 else
                 {
